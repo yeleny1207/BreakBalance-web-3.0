@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Break Balance - Web 3.0</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Break Balance 🤖</h1>
+    <p>Tu asistente virtual para pausas activas</p>
+
+    <div class="chat-box" id="chat-box">
+      <div class="bot-msg">Hola, soy tu asistente de bienestar. ¿En qué te puedo ayudar hoy?</div>
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="user-input" placeholder="Escribe tu mensaje..." />
+      <button onclick="sendMessage()">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+
+    function sendMessage() {
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      // Mostrar mensaje del usuario
+      const userMsg = document.createElement('div');
+      userMsg.className = 'user-msg';
+      userMsg.textContent = message;
+      chatBox.appendChild(userMsg);
+
+      // Limpiar input
+      userInput.value = '';
+
+      // Generar respuesta simulada de IA
+      const botMsg = document.createElement('div');
+      botMsg.className = 'bot-msg';
+      botMsg.textContent = getBotResponse(message);
+      chatBox.appendChild(botMsg);
+
+      // Hacer scroll al final
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function getBotResponse(input) {
+      const lowerInput = input.toLowerCase();
+      if (lowerInput.includes('pausa') || lowerInput.includes('ejercicio')) {
+        return 'Te recomiendo una pausa activa de 3 minutos con estiramientos de cuello y espalda.';
+      } else if (lowerInput.includes('respira') || lowerInput.includes('ansiedad')) {
+        return 'Haz una respiración profunda: inhala 4 segundos, retén 4 segundos, exhala 6 segundos.';
+      } else if (lowerInput.includes('descanso') || lowerInput.includes('pomodoro')) {
+        return 'El ciclo Pomodoro ideal es de 25 minutos de trabajo y 5 de descanso. ¿Quieres que te ayude a programarlo?';
+      } else {
+        return 'Lo siento, no entendí bien. Puedes preguntarme por pausas, respiración o descansos.';
+      }
+    }
+  </script>
+</body>
+</html>
